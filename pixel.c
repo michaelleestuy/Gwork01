@@ -8,13 +8,13 @@
 #include <errno.h>
 
 void RandomImage(char * file){
-  int b = open(file, O_CREAT | O_WRONLY | O_RDONLY, 666);
-  char string[5000000];
-  strcat(string, "P3 500 500 255 ");
+  int b = open(file, O_CREAT | O_WRONLY | O_RDONLY | O_APPEND, 888);
+
+  write(b, "P3 500 500 255", sizeof("P3 500 500 255"));
   
   int i;
   for(i = 0; i < 250000; i++){
-    strcat(string, "0 255 0 ");
+    write(b, "0 255 0", sizeof("0 255 0"));
   }
 
 
@@ -22,8 +22,6 @@ void RandomImage(char * file){
 
 
   
-  write(b, string, 5000000);
-
 }
 
 int main(){
